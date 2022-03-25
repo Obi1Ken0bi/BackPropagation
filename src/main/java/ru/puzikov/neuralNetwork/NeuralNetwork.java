@@ -7,25 +7,24 @@ public class NeuralNetwork {
     public static void main(String[] args) {
         double[][] inputs =
                 {
-                        new double[]{0.0d, 0.0d, 0.0d},
-                        new double[]{0.0d, 1.0d, 0.0d},
-                        new double[]{1.0d, 0.0d, 1.0d},
-                        new double[]{1.0d, 1.0d, 1.0d},
-                        new double[]{0.0d, 0.0d, 1.0d},
+                        new double [] { 0.0,0.0 },
+                        new double [] { 0.0,1.0 },
+                        new double [] { 1.0, 0.0d},
+                        new double [] { 1.0d, 1.0},
                 };
+
         double[][] outputs =
                 {
-                        new double[]{0.5d},
-                        new double[]{1.0d},
-                        new double[]{0.0d},
-                        new double[]{0.3d},
-                        new double[]{0.7d}
+                        new double[] { 0.0d },
+                        new double[] { 0.0d },
+                        new double[] { 0.0d },
+                        new double[] { 1.0d },
                 };
         ActivationFunction activationFunction = new Sigmoid();
-        LayerNetwork network = new LayerNetwork(new int[]{2, 1},
-                new int[]{3, 2},
-                new ActivationFunction[]{activationFunction, activationFunction});
-        network.train(5000, 0.1, inputs, outputs);
+        LayerNetwork network = new LayerNetwork(new int[]{25,25, 1},
+                2,
+                new ActivationFunction[]{activationFunction, activationFunction,activationFunction});
+        network.train(10000, 0.01, inputs, outputs);
         for (int i = 0; i < inputs.length; i++) {
             network.setInputLayer(inputs[i]);
             network.compute();
