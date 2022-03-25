@@ -1,4 +1,5 @@
-import ru.puzikov.neuralNetwork.LayerNetwork;
+package ru.puzikov.neuralNetwork;
+
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
 import ru.puzikov.neuralNetwork.function.Sigmoid;
 
