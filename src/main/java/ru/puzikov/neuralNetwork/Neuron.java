@@ -1,15 +1,22 @@
 package ru.puzikov.neuralNetwork;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
 
 import java.util.Random;
 
 public class Neuron {
+    @JsonIgnore
     private final ActivationFunction activatorFunction;
-    private double[] inputs;
     private final double[] weights;
+    private double[] inputs;
     private double bias;
     private double output;
+
+    public Neuron(ActivationFunction activatorFunction, double[] weights) {
+        this.activatorFunction = activatorFunction;
+        this.weights = weights;
+    }
 
     public double getBias() {
         return bias;
@@ -17,11 +24,6 @@ public class Neuron {
 
     public void setBias(double bias) {
         this.bias = bias;
-    }
-
-    public Neuron(ActivationFunction activatorFunction, double[] weights) {
-        this.activatorFunction = activatorFunction;
-        this.weights = weights;
     }
 
     public double summator() {
@@ -39,7 +41,7 @@ public class Neuron {
     }
 
     public void randomizeWeights(Random rnd) {
-        bias=rnd.nextDouble()*8-4;
+        bias = rnd.nextDouble() * 8 - 4;
         for (int i = 0; i < weights.length; i++) {
             weights[i] = rnd.nextDouble() * 8 - 4;
         }

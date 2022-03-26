@@ -1,5 +1,6 @@
 package ru.puzikov.neuralNetwork;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
@@ -14,6 +15,7 @@ public class Layer {
     private int size;
     private int previousLayersSize;
     private double[] outputs;
+    @JsonIgnore
     private ActivationFunction activationFunction;
 
     public Layer(int size, int previousLayersSize, ActivationFunction activationFunction) {
@@ -55,7 +57,7 @@ public class Layer {
                 neurons[i].getWeights()[j] = neurons[i].getWeights()[j] - previousLayerOutputs[j] * weightsDeltas[i] * learningRate;
                 outputErrors[j] += weightsDeltas[i] * neurons[i].getWeights()[j];
             }
-            neurons[i].setBias(neurons[i].getBias()-weightsDeltas[i]*learningRate);
+            neurons[i].setBias(neurons[i].getBias() - weightsDeltas[i] * learningRate);
         }
         return outputErrors;
     }

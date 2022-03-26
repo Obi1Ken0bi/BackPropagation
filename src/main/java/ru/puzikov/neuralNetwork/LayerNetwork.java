@@ -19,12 +19,13 @@ public class LayerNetwork {
         fillLayersList(sizes, previousLayerSizes, activationFunctions);
 
     }
-    public LayerNetwork(int[] sizes,int inputLayerSize,ActivationFunction[] activationFunctions){
+
+    public LayerNetwork(int[] sizes, int inputLayerSize, ActivationFunction[] activationFunctions) {
         hiddenLayers = new Layer[sizes.length];
         int[] previousLayerSizes = new int[sizes.length];
-        previousLayerSizes[0]=inputLayerSize;
+        previousLayerSizes[0] = inputLayerSize;
         System.arraycopy(sizes, 0, previousLayerSizes, 1, sizes.length - 1);
-        fillLayersList(sizes,previousLayerSizes,activationFunctions);
+        fillLayersList(sizes, previousLayerSizes, activationFunctions);
     }
 
     public void compute() {
