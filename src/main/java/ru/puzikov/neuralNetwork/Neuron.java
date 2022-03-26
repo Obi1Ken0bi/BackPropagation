@@ -11,6 +11,14 @@ public class Neuron {
     private double bias;
     private double output;
 
+    public double getBias() {
+        return bias;
+    }
+
+    public void setBias(double bias) {
+        this.bias = bias;
+    }
+
     public Neuron(ActivationFunction activatorFunction, double[] weights) {
         this.activatorFunction = activatorFunction;
         this.weights = weights;
@@ -31,6 +39,7 @@ public class Neuron {
     }
 
     public void randomizeWeights(Random rnd) {
+        bias=rnd.nextDouble()*8-4;
         for (int i = 0; i < weights.length; i++) {
             weights[i] = rnd.nextDouble() * 8 - 4;
         }

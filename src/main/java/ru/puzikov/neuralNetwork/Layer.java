@@ -55,6 +55,7 @@ public class Layer {
                 neurons[i].getWeights()[j] = neurons[i].getWeights()[j] - previousLayerOutputs[j] * weightsDeltas[i] * learningRate;
                 outputErrors[j] += weightsDeltas[i] * neurons[i].getWeights()[j];
             }
+            neurons[i].setBias(neurons[i].getBias()-weightsDeltas[i]*learningRate);
         }
         return outputErrors;
     }
