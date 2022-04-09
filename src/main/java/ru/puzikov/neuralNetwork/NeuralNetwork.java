@@ -5,43 +5,141 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
 import ru.puzikov.neuralNetwork.function.LinearFunction;
 import ru.puzikov.neuralNetwork.function.SigmoidFunction;
+import ru.puzikov.neuralNetwork.function.TanhFunction;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class NeuralNetwork {
     public static void main(String[] args) {
-        double[][] inputs = new double[1000][];
+        double[][] outputs = new double[][]{
+                new double[]{1,0},
+                new double[]{1,0},
+                new double[]{1,0},
+                new double[]{1,0},
+                new double[]{1,0},
+                new double[]{0,1},
+                new double[]{0,1},
+                new double[]{0,1},
+                new double[]{0,1},
+                new double[]{0,1}
+        };
 
 
-        double[][] outputs = new double[1000][];
+        double[][] inputs = new double[][]{
+                new double[]{
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        1,1,1,1,1
+                },
+                new double[]{
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        1,1,1,1,1,
+                        0,0,0,0,0
+                },
+                new double[]{
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,1,1,1
+                },
+                new double[]{
+                        1,1,1,1,1,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0
+                },
+                new double[]{
+                        1,1,1,1,1,
+                        1,1,1,1,1,
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0
+                },
+                new double[]{
+                        0,1,0,0,0,
+                        1,1,1,0,0,
+                        0,1,0,0,0,
+                        0,0,0,0,0,
+                        0,0,0,0,0
+                },
+                new double[]{
+                        0,0,0,0,0,
+                        0,0,0,0,0,
+                        0,1,0,0,0,
+                        1,1,1,0,0,
+                        0,1,0,0,0
+                },
+                new double[]{
+                        0,0,0,0,0,
+                        0,1,0,0,0,
+                        1,1,1,0,0,
+                        0,1,0,0,0,
+                        0,0,0,0,0
+                },
+                new double[]{
+                        0,0,0,0,0,
+                        0,0,1,0,0,
+                        0,1,1,1,0,
+                        0,0,1,0,0,
+                        0,0,0,0,0
+                },
+                new double[]{
+                        0,0,1,0,0,
+                        0,0,1,0,0,
+                        1,1,1,1,1,
+                        0,0,1,0,0,
+                        0,0,1,0,0
+                }
+        };
 
-        for (int i = 0; i < inputs.length; i++) {
-            inputs[i] = new double[]{i};
-            outputs[i] = new double[]{Math.sqrt(i)};
-        }
+
         ActivationFunction activationFunction = new SigmoidFunction();
         ActivationFunction linearFunction = new LinearFunction();
-        LayerNetwork network = new LayerNetwork(new int[]{15, 1},
+        ActivationFunction tanh=new TanhFunction();
+        LayerNetwork network = new LayerNetwork(new int[]{15, 2},
                 inputs[0].length,
-                new ActivationFunction[]{linearFunction, linearFunction});
-        network.train(100000, 0.000000000001, inputs, outputs);
+                new ActivationFunction[]{tanh, activationFunction});
+        network.train(50000, 0.1, inputs, outputs);
         for (int i = 0; i < inputs.length; i++) {
             network.setInputLayer(inputs[i]);
             network.compute();
-            System.out.println("Output: " + network.getOutput()[0] + " Expected: " + outputs[i][0]);
+            System.out.println("Output: " + Arrays.toString(network.getOutput()) + " Expected: " + Arrays.toString(outputs[i]));
         }
-        network.setInputLayer(new double[]{16});
+        network.setInputLayer(new double[]{
+                0,0,0,0,0,
+                0,0,0,0,0,
+                0,0,0,1,0,
+                0,0,1,1,1,
+                0,0,0,1,0
+        });
         network.compute();
-        System.out.println(network.getOutput()[0]);
-        network.setInputLayer(new double[]{49});
+        System.out.println(Arrays.toString(network.getOutput()));
+        network.setInputLayer(new double[]{
+                0,0,1,0,0,
+                0,0,1,0,0,
+                1,1,1,1,0,
+                0,0,1,0,0,
+                0,0,1,0,0
+        });
         network.compute();
-        System.out.println(network.getOutput()[0]);
-        ObjectMapper jsonMapper = new JsonMapper();
-        try {
-            jsonMapper.writeValue(new File("Test.json"), network);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println(Arrays.toString(network.getOutput()));
+        network.setInputLayer(new double[]{
+                0,0,0,0,0,
+                0,0,0,0,0,
+                0,0,0,0,0,
+                1,1,1,1,0,
+                0,0,0,0,0
+        });
+        network.compute();
+        System.out.println(Arrays.toString(network.getOutput()));
+
     }
 }

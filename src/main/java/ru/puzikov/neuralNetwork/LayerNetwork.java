@@ -14,11 +14,7 @@ public class LayerNetwork {
     private double[] output;
     private double mse;
 
-    public LayerNetwork(int[] sizes, int[] previousLayerSizes, ActivationFunction[] activationFunctions) {
-        hiddenLayers = new Layer[sizes.length];
-        fillLayersList(sizes, previousLayerSizes, activationFunctions);
 
-    }
 
     public LayerNetwork(int[] sizes, int inputLayerSize, ActivationFunction[] activationFunctions) {
         hiddenLayers = new Layer[sizes.length];
