@@ -1,17 +1,17 @@
-package ru.puzikov.neuralNetwork;
+package ru.puzikov.neuralNetwork.neuron;
 
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
 
 import java.util.Random;
 
-public class Neuron {
+public class NeuronBiased implements Neuron {
     private final ActivationFunction activatorFunction;
     private double[] inputs;
     private final double[] weights;
     private double bias;
     private double output;
 
-    public Neuron(ActivationFunction activatorFunction, double[] weights) {
+    public NeuronBiased(ActivationFunction activatorFunction, double[] weights) {
         this.activatorFunction = activatorFunction;
         this.weights = weights;
     }
@@ -25,6 +25,7 @@ public class Neuron {
         return sum;
     }
 
+    @Override
     public void activate() {
         double sum = summator();
         output = activatorFunction.activate(sum);

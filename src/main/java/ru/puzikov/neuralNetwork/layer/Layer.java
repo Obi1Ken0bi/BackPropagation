@@ -1,8 +1,9 @@
-package ru.puzikov.neuralNetwork;
+package ru.puzikov.neuralNetwork.layer;
 
 import lombok.Getter;
 import lombok.Setter;
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
+import ru.puzikov.neuralNetwork.neuron.NeuronBiased;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
 @Getter
 @Setter
 public class Layer {
-    private Neuron[] neurons;
+    private NeuronBiased[] neurons;
     private int size;
     private int previousLayersSize;
     private double[] outputs;
@@ -33,16 +34,16 @@ public class Layer {
     }
 
     public void randomizeWeights(Random rnd) {
-        for (Neuron neuron : neurons) {
+        for (NeuronBiased neuron : neurons) {
             neuron.randomizeWeights(rnd);
         }
     }
 
     private void fillNeuronsList() {
-        neurons = new Neuron[size];
+        neurons = new NeuronBiased[size];
         for (int i = 0; i < neurons.length; i++) {
             double[] weights = new double[previousLayersSize];
-            neurons[i] = new Neuron(activationFunction, weights);
+            neurons[i] = new NeuronBiased(activationFunction, weights);
         }
     }
 
@@ -64,11 +65,11 @@ public class Layer {
     }
 
     public double[] getOutputs() {
-        return Arrays.stream(neurons).mapToDouble(Neuron::getOutput).toArray();
+        return Arrays.stream(neurons).mapToDouble(NeuronBiased::getOutput).toArray();
     }
 
     public void setInputs(double[] inputs) {
-        for (Neuron neuron : neurons) {
+        for (NeuronBiased neuron : neurons) {
             neuron.setInputs(inputs);
         }
     }

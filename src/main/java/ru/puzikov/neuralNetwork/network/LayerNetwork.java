@@ -1,8 +1,9 @@
-package ru.puzikov.neuralNetwork;
+package ru.puzikov.neuralNetwork.network;
 
 import lombok.Getter;
 import lombok.Setter;
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
+import ru.puzikov.neuralNetwork.layer.Layer;
 
 import java.util.Random;
 

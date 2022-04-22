@@ -2,6 +2,9 @@ package ru.puzikov.neuralNetwork;
 
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
 import ru.puzikov.neuralNetwork.function.Sigmoid;
+import ru.puzikov.neuralNetwork.network.LayerNetwork;
+
+import java.util.Arrays;
 
 public class NeuralNetwork {
     public static void main(String[] args) {
