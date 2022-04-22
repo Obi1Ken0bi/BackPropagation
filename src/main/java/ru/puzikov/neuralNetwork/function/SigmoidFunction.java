@@ -1,6 +1,6 @@
 package ru.puzikov.neuralNetwork.function;
 
-public class Sigmoid implements ActivationFunction {
+public class SigmoidFunction implements ActivationFunction {
     @Override
     public double activate(double x) {
         return 1 / (1 + Math.pow(Math.E, -x));

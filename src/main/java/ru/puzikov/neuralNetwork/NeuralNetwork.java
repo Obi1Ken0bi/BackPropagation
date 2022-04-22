@@ -1,8 +1,9 @@
 package ru.puzikov.neuralNetwork;
 
 import ru.puzikov.neuralNetwork.function.ActivationFunction;
-import ru.puzikov.neuralNetwork.function.Sigmoid;
+import ru.puzikov.neuralNetwork.function.SigmoidFunction;
 import ru.puzikov.neuralNetwork.network.LayerNetwork;
+import ru.puzikov.neuralNetwork.network.RadialNetwork;
 
 import java.util.Arrays;
 
@@ -23,7 +24,7 @@ public class NeuralNetwork {
                         new double[] { 0.0d },
                         new double[] { 1.0d },
                 };
-        ActivationFunction activationFunction = new Sigmoid();
+        ActivationFunction activationFunction = new SigmoidFunction();
         LayerNetwork network = new LayerNetwork(new int[]{25,25, 1},
                 2,
                 new ActivationFunction[]{activationFunction, activationFunction,activationFunction});
@@ -139,12 +140,11 @@ public class NeuralNetwork {
         };
 
 
-        ActivationFunction activationFunction = new Sigmoid();
-        ActivationFunction linearFunction = new LinearFunction();
-        ActivationFunction tanh = new TanhFunction();
+        ActivationFunction activationFunction = new SigmoidFunction();
+
         LayerNetwork network = new LayerNetwork(new int[]{15, 3},
                 inputs[0].length,
-                new ActivationFunction[]{tanh, activationFunction});
+                new ActivationFunction[]{new SigmoidFunction(), activationFunction});
         network.train(50000, 0.1, inputs, outputs);
         for (int i = 0; i < inputs.length; i++) {
             network.setInputLayer(inputs[i]);
