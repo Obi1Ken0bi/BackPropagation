@@ -1,8 +1,8 @@
-package ru.puzikov.neuralNetwork;
+package ru.puzikov.neuralNetwork.layernetwork;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.puzikov.neuralNetwork.function.ActivationFunction;
+import ru.puzikov.neuralNetwork.layernetwork.function.ActivationFunction;
 
 import java.util.Random;
 
@@ -13,7 +13,6 @@ public class LayerNetwork {
     private double[] inputLayer;
     private double[] output;
     private double mse;
-
 
 
     public LayerNetwork(int[] sizes, int inputLayerSize, ActivationFunction[] activationFunctions) {

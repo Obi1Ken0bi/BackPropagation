@@ -1,12 +1,10 @@
-package ru.puzikov.neuralNetwork;
+package ru.puzikov.neuralNetwork.layernetwork;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import ru.puzikov.neuralNetwork.function.ActivationFunction;
+import ru.puzikov.neuralNetwork.layernetwork.function.ActivationFunction;
 
 import java.util.Random;
 
 public class Neuron {
-    @JsonIgnore
     private final ActivationFunction activatorFunction;
     private final double[] weights;
     private double[] inputs;

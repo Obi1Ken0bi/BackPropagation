@@ -1,9 +1,9 @@
-package ru.puzikov.neuralNetwork;
+package ru.puzikov.neuralNetwork.layernetwork;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import ru.puzikov.neuralNetwork.function.ActivationFunction;
+import ru.puzikov.neuralNetwork.layernetwork.function.ActivationFunction;
 
 import java.util.Arrays;
 import java.util.Random;

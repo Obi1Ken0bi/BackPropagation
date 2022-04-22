@@ -1,4 +1,4 @@
-package ru.puzikov.neuralNetwork.function;
+package ru.puzikov.neuralNetwork.layernetwork.function;
 
 public class SigmoidFunction implements ActivationFunction {
     @Override

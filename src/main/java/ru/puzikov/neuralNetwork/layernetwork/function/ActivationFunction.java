@@ -1,4 +1,4 @@
-package ru.puzikov.neuralNetwork.function;
+package ru.puzikov.neuralNetwork.layernetwork.function;
 
 public interface ActivationFunction {
     double activate(double x);
